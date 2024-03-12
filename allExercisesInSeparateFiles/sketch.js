@@ -3,7 +3,7 @@
  *****/
 
 let currentActivity = 0;
-let menuButton, game1Button, game2Button, game3Button, game4Button;
+let menuButton, game1Button, game2Button, game3Button, game4Button, pauseButton;
 
 /***** 
   * If you want to load images or sounds into your application,
@@ -27,6 +27,11 @@ function switchToMM(){
   game2Button.show();
   game3Button.show();
   game4Button.show();
+  pauseButton.hide();
+}
+
+function pauseSetup() {
+  
 }
 
 function setup() {
@@ -56,8 +61,12 @@ function setup() {
   game4Button.position(10, 200);
   game4Button.mousePressed(game4Setup);
   game4Button.show();
-}
 
+  pauseButton = createButton('Pause');
+  pauseButton.position(10, 250);
+  pauseButton.mousePressed(pauseSetup);
+  pauseButton.hide();
+}
 
 function draw() {  
   switch(currentActivity){

@@ -9,12 +9,13 @@ function game3Setup(){
   background(220);
   currentActivity = 3;
   
-  // Hide the Activity 3 button, show all the other buttons
+  // Hide the Activity 3 button, show home and pause button
   menuButton.show();
-  game1Button.show();
-  game2Button.show();
+  game1Button.hide();
+  game2Button.hide();
   game3Button.hide();
-  game4Button.show();
+  game4Button.hide();
+  pauseButton.show();
   
   stroke(0);
   fill("red");
