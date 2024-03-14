@@ -9,6 +9,10 @@ function game2Setup(){
   createCanvas(windowWidth, windowHeight);
   currentActivity = 2;
   
+  background('#ffffff');
+
+  let imageY = windowHeight - waves.height; 
+  image(waves, 0, imageY);
   // Hide the Activity 2 button, show all the other buttons
   fill(0);
   rect(menuButton, 30, 10);
@@ -20,18 +24,24 @@ function game2Setup(){
 
   // Set the size of the waves image
   waves.resize(windowWidth, 0);
+
+  
 }
 
 function game2Draw(){
-  background('#ffffff');
-  
-  fill('black');
-  text('Activity 2 goes here', 200, 200);
+  //background('#ffffff');
 
   // Set the size of the wave image
-  let imageY = windowHeight - waves.height; 
-  image(waves, 0, imageY);
+  //let imageY = windowHeight - waves.height; 
+  //image(waves, 0, imageY);
+  
+  if (mouseIsPressed) {
+    strokeWeight(10); // Set the thickness of the line
+    stroke(255, 0, 0); // Set the color of the line
+    line(mouseX, mouseY, pmouseX, pmouseY);
+  }
 }
+
 
 function game2MousePressed(){
   
