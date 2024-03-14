@@ -1,13 +1,30 @@
-let exercise3x = 200;
-let exercise3y = 200;
+let bubbleMin = 20;
+let bubbleCount = 0;
 
 function game3Preload(){
   
 }
 
+function bubbleCreation(addbubbleCount) {
+  stroke('black');
+  const c = color(5, 45, 90);
+  fill(c);
+  for (int i = 0; i < addbubbleCount; i++) {
+    circle(random(75, 325),random(75, 325), 10);
+  }
+}
+
 function game3Setup(){
   background(220);
   currentActivity = 3;
+
+  let initialBubbleCount = random(25, 50);
+  
+  stroke(0);
+  line(50, 50, 50, 350);
+  line(50, 350, 350, 350);
+  line(350, 350, 350, 50);
+  line(350, 50, 50, 50);
   
   // Hide the Activity 3 button, show home and pause button
   menuButton.show();
@@ -17,23 +34,17 @@ function game3Setup(){
   game4Button.hide();
   pauseButton.show();
   
-  stroke(0);
-  fill("red");
-  circle(100,100, 200);
-  fill("blue");
-  rect(200,0, 200,200);
-  fill("green");
-  circle(300,300, 200);
-  fill("yellow");
-  rect(0,200, 200,200);
-  noStroke();
+  bubbleCreation(initialBubbleCount);
+  bubbleCount = initialBubbleCount;
+  
 }
 
 function game3Draw(){
   
-  exercise3x = exercise3x + random(4) - 2;
-  exercise3y = exercise3y + random(4) - 2;
-  
-  fill(220);
-  circle(exercise3x, exercise3y, 10);
+  let addBubble = random(25, 50);
+
+  if (bubbleCount < bubbleMin) {
+    bubbleCreation(addBubble);
+    bubbleCount = addBubble + bubbleCount;
+  }
 }
