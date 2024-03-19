@@ -9,7 +9,7 @@ function bubbleCreation(addbubbleCount) {
   stroke('black');
   const c = color(5, 45, 90);
   fill(c);
-  for (int i = 0; i < addbubbleCount; i++) {
+  for (let i = 0; i < addbubbleCount; i++) {
     circle(random(75, 325),random(75, 325), 10);
   }
 }
