@@ -1,5 +1,6 @@
 let bubbleMin = 20;
 let bubbleCount = 0;
+let popCount = 0;
 
 function game3Preload(){
   
@@ -34,17 +35,25 @@ function game3Setup(){
   game4Button.hide();
   pauseButton.show();
   
-  bubbleCreation(initialBubbleCount);
-  bubbleCount = initialBubbleCount;
-  
 }
 
 function game3Draw(){
   
   let addBubble = random(25, 50);
+  console.log(typeof popCount);
 
   if (bubbleCount < bubbleMin) {
+    translate(width / 2, height / 2);
+    translate(p5.Vector.fromAngle(millis() / 1000, 40));
     bubbleCreation(addBubble);
     bubbleCount = addBubble + bubbleCount;
+  }
+}
+
+function game3MouseClicked(){
+
+  if (c === 0) {
+    c = 255;
+    popCount++;
   }
 }
