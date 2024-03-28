@@ -42,7 +42,7 @@ function game1Setup(){
   fill("green");
   ellipse(leafPosx, leafPosy, leafWidth, leafHeight);
 
-  smallerCircleArea = PI * (circleRadius/(19/20)) * (circleRadius/(19/20));
+  smallerCircleArea = PI * (circleRadius/(17/18)) * (circleRadius/(17/18));
 }
 
 function game1Draw(){
@@ -65,7 +65,7 @@ function game1Draw(){
         fill("white");
         stroke("red");
         strokeWeight(10);
-        fill("blue");//change to red
+        fill('#C31B1B');//change to red
         circle(circlePosx,circlePosy,circleRadius);
         stroke("brown");
         rect(stemPosx, stemPosy, stemWidth, stemHeight);
