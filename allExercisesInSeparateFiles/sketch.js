@@ -35,35 +35,41 @@ function pauseSetup() {
 }
 
 function setup() {
-  createCanvas(400, 400);
-  background(220);
+  createCanvas(windowWidth, windowHeight);
+  background('blue');
   menuButton = createButton('Home Page');
-  menuButton.position(0, 0);
+  menuButton.size(100, 40);
+  menuButton.position(1000, 875);
   menuButton.mousePressed(switchToMM);
   menuButton.hide();
   
   game1Button = createButton('Game 1');
-  game1Button.position(10, 50);
+  game1Button.size(100, 40);
+  game1Button.position(200, 875);
   game1Button.mousePressed(game1Setup);
   game1Button.show();
   
   game2Button = createButton('Game 2');
-  game2Button.position(10, 100);
+  game2Button.size(100, 40);
+  game2Button.position(400, 875);
   game2Button.mousePressed(game2Setup);
   game2Button.show();
   
   game3Button = createButton('Game 3');
-  game3Button.position(10, 150);
+  game3Button.size(100, 40);
+  game3Button.position(600, 875);
   game3Button.mousePressed(game3Setup);
   game3Button.show();
   
   game4Button = createButton('Game 4');
-  game4Button.position(10, 200);
+  game4Button.size(100, 40);
+  game4Button.position(800, 875);
   game4Button.mousePressed(game4Setup);
   game4Button.show();
 
   pauseButton = createButton('Pause');
-  pauseButton.position(10, 250);
+  pauseButton.size(100, 40);
+  pauseButton.position(1200, 875);
   pauseButton.mousePressed(pauseSetup);
   pauseButton.hide();
 }
@@ -89,10 +95,11 @@ function draw() {
 }
 
 function mainMenu(){
-  background(220);
+  background('blue');
   
   fill('black');
-  text('Click an activity', 200, 200);
+  textSize(35);
+  text('Click an activity', 300, 750);
 }
 
 /*****
