@@ -13,6 +13,7 @@ let leafHeight = 20;
 let filledArea = 0;
 let halfCircleArea;
 let canDraw = true;
+let fallSpeed = 5;
 
 function game1Preload(){
   treeImage = loadImage("./Game1/apple-tree-1.jpg");
@@ -25,6 +26,11 @@ function game1Setup(){
   currentActivity = 1;
 
   treeImage.resize(windowWidth, windowHeight);
+  menuButton.show();
+  game1Button.hide();
+  //game2Button.hide();
+  //game3Button.hide();
+  //game4Button.hide();
 
   fill('black');
   text('Activity 1 goes here', 200, 200);
@@ -38,7 +44,7 @@ function game1Setup(){
   stroke("brown");
   rect(stemPosx, stemPosy, stemWidth, stemHeight);
   stroke("green");
-  strokeWeight(5)
+  strokeWeight(5);
   fill("green");
   ellipse(leafPosx, leafPosy, leafWidth, leafHeight);
 
@@ -63,9 +69,9 @@ function game1Draw(){
         background('rgba(0,255,0, 0.25)');
         image(treeImage, 0, 0);
         fill("white");
-        stroke("red");
+        stroke('#C31B1B');//change to darker red
         strokeWeight(10);
-        fill('#C31B1B');//change to red
+        fill('#C31B1B');//change to darker red
         circle(circlePosx,circlePosy,circleRadius);
         stroke("brown");
         rect(stemPosx, stemPosy, stemWidth, stemHeight);
@@ -75,12 +81,41 @@ function game1Draw(){
         ellipse(leafPosx, leafPosy, leafWidth, leafHeight);
         filledArea = 0; // Reset filled area
         canDraw = false; // Disable drawing
-
       } else {
         strokeWeight(10); // Set the thickness of the line
         stroke(255, 0, 0); // Set color to red
         line(mouseX, mouseY, pmouseX, pmouseY); // Draw line
       }
     }
+    //make the apple drop to the ground
+  } else if (!canDraw) {
+    // Circle animation
+    if (circlePosy + circleRadius < windowHeight) {
+      circlePosy += fallSpeed; // Move circle down
+      stemPosy += fallSpeed;
+      leafPosy += fallSpeed;
+    }
+    // Redraw the static elements
+    background('rgba(0,255,0, 0.25)');
+    image(treeImage, 0, 0);
+    fill("white");
+    stroke('#C31B1B');//change to darker red
+    strokeWeight(10);
+    fill('#C31B1B');//change to darker red
+    circle(circlePosx, circlePosy, circleRadius);
+    stroke("brown");
+    rect(stemPosx, stemPosy, stemWidth, stemHeight);
+    stroke("green");
+    strokeWeight(5)
+    fill("green");
+    ellipse(leafPosx, leafPosy, leafWidth, leafHeight);
+  }
+  if (canDraw) {
+    // Display text while canDraw is true
+    stroke("black")
+    fill("black");
+    strokeWeight(1);
+    textSize(25);
+    text("Draw inside the apple!", (width/9), height-(height/18));
   }
 }
