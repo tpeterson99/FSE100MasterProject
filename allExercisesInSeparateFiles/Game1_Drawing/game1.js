@@ -46,49 +46,70 @@ function game1Setup(){
   stroke("green");
   strokeWeight(5);
   fill("green");
-  ellipse(leafPosx, leafPosy, leafWidth, leafHeight);
+  ellipse(leafPosx, leafPosy, leafWidth, leafHeight); 
 
-  smallerCircleArea = PI * (circleRadius/(17/18)) * (circleRadius/(17/18));
+  circleArea = PI * (circleRadius) * (circleRadius); 
 }
 
-function game1Draw(){
-  if (canDraw && mouseIsPressed) {
-    // Check if the mouse position is inside the circle
-    let distanceToCircle = dist(mouseX, mouseY, circlePosx, circlePosy);
-    if (distanceToCircle <= circleRadius/2-7) {
-      // Calculate the distance traveled by the mouse
-      let d = dist(mouseX, mouseY, pmouseX, pmouseY);
-      // Add the area of the strip to the filled area
-      filledArea += d * 10; // Multiplying by 10 to approximate area based on stroke weight
+let prevX, prevY; // Variables to store previous mouse position
 
-      // Check if filled area exceeds half circle area
-      if (filledArea >= smallerCircleArea) {
-        // Clear the canvas
-        clear();
-        // Redraw the static elements
-        background('rgba(0,255,0, 0.25)');
-        image(treeImage, 0, 0);
-        fill("white");
-        stroke('#C31B1B');//change to darker red
-        strokeWeight(10);
-        fill('#C31B1B');//change to darker red
-        circle(circlePosx,circlePosy,circleRadius);
-        stroke("brown");
-        rect(stemPosx, stemPosy, stemWidth, stemHeight);
-        stroke("green");
-        strokeWeight(5)
-        fill("green");
-        ellipse(leafPosx, leafPosy, leafWidth, leafHeight);
-        filledArea = 0; // Reset filled area
-        canDraw = false; // Disable drawing
-      } else {
+function game1Draw() {
+  if (canDraw) {
+    // Display text while canDraw is true
+    stroke("black")
+    fill("black");
+    strokeWeight(1);
+    textSize(25);
+    text("Color in the apple!", (width/9), height-(height/18));
+  }
+
+  // Check if the mouse position is inside the circle
+  let distanceToCircle = dist(mouseX, mouseY, circlePosx, circlePosy);
+  if (distanceToCircle <= circleRadius/2) {
+    // Draw only if the mouse is inside the circle
+    if (canDraw && mouseIsPressed) {
+      if (prevX !== undefined && prevY !== undefined) {
+        // Calculate the distance traveled by the mouse
+        let d = dist(mouseX, mouseY, prevX, prevY);
+        // Add the area of the strip to the filled area
+        filledArea += d * 10; // Multiplying by 10 to approximate area based on stroke weight
+
         strokeWeight(10); // Set the thickness of the line
         stroke(255, 0, 0); // Set color to red
-        line(mouseX, mouseY, pmouseX, pmouseY); // Draw line
+        line(mouseX, mouseY, prevX, prevY); // Draw line
       }
+      prevX = mouseX; // Update previous X position
+      prevY = mouseY; // Update previous Y position
     }
-    //make the apple drop to the ground
-  } else if (!canDraw) {
+  } else {
+    // Erase drawing if mouse is outside the circle
+    prevX = undefined; // Reset previous X position
+    prevY = undefined; // Reset previous Y position
+  }
+
+  // Check if filled area exceeds circle area
+  if (filledArea >= circleArea) {
+    // Clear the canvas
+    clear();
+    // Redraw the static elements
+    background('rgba(0,255,0, 0.25)');
+    image(treeImage, 0, 0);
+    fill("white");
+    stroke('#C31B1B'); // change to darker red
+    strokeWeight(10);
+    fill('#C31B1B'); // change to darker red
+    circle(circlePosx,circlePosy,circleRadius);
+    stroke("brown");
+    rect(stemPosx, stemPosy, stemWidth, stemHeight);
+    stroke("green");
+    strokeWeight(5)
+    fill("green");
+    ellipse(leafPosx, leafPosy, leafWidth, leafHeight);
+    filledArea = 0; // Reset filled area
+    canDraw = false; // Disable drawing
+  }
+
+  if (!canDraw) {
     // Circle animation
     if (circlePosy + circleRadius < windowHeight) {
       circlePosy += fallSpeed; // Move circle down
@@ -116,6 +137,6 @@ function game1Draw(){
     fill("black");
     strokeWeight(1);
     textSize(25);
-    text("Draw inside the apple!", (width/9), height-(height/18));
+    text("Color in the apple!", (width/9), height-(height/18));
   }
 }
