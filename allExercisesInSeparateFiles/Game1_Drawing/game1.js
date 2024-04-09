@@ -28,9 +28,9 @@ function game1Setup(){
   treeImage.resize(windowWidth, windowHeight);
   menuButton.show();
   game1Button.hide();
-  //game2Button.hide();
-  //game3Button.hide();
-  //game4Button.hide();
+  game2Button.hide();
+  game3Button.hide();
+  game4Button.hide();
 
   fill('black');
   text('Activity 1 goes here', 200, 200);
