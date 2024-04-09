@@ -4,6 +4,9 @@ let popCount = 0;
 let bubbleInstances = [];
 let bubbleObj;
 let bubbleScore;
+let bubbleTimer;
+let bubbleTimeLeft = 60;
+let bubbleIsPaused = false;
 
 function game3Preload(){
   bubbleObj = loadImage("./Game3_Bubble/fullbubble.png");
@@ -38,21 +41,27 @@ function game3Setup(){
   bubbleScore = createP("High Score: " + bubbleHighScore + " Current Score: " + popCount);
   bubbleScore.position(250, 20);
   bubbleScore.style('font-size', '32px');
+
+  timerDisplay = createP("Time left: " + bubbleTimeLeft + "s");
+  timerDisplay.position(windowWidth - 300, 20);
+  timerDisplay.style('font-size', '32px');
   
+  startTimer();
 }
 
 function game3Draw(){
-  
-  let addBubble = random(10, 20);
+  if(!bubbleIsPaused && bubbleTimeLeft > 0) {
+    let addBubble = random(10, 20);
  
-  if (bubbleCount < bubbleMin) {
-    bubbleCreation(addBubble);
-    bubbleCount = addBubble + bubbleCount;
-  }
+    if (bubbleCount < bubbleMin) {
+      bubbleCreation(addBubble);
+      bubbleCount = addBubble + bubbleCount;
+    }
 
-  if (mouseIsPressed) {
-    game3MouseClicked();
-  }
+    if (mouseIsPressed) {
+      game3MouseClicked();
+    }
+  } 
 }
 
 function game3MouseClicked(){
@@ -82,4 +91,16 @@ function updateHighscore(score) {
   if (score > bubbleHighScore) {
     bubbleHighScore = score;
   }
-} 
+}
+
+function startTimer() {
+  bubbleTimer = setInterval(() => {
+    bubbleTimeLeft--;
+    if (bubbleTimeLeft <= 0) {
+      clearInterval(bubbleTimer);
+      timerDisplay.html("Game Over");
+    } else {
+      timerDisplay.html("Time left: " + bubbleTimeLeft + "s");
+    }
+  }, 1000); // Update timer every second (1000 milliseconds)
+}
