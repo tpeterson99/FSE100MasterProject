@@ -38,7 +38,13 @@ function switchToMM(){
 }
 
 function pauseSetup() {
-  
+  if(!bubbleIsPaused) {
+    clearInterval(bubbleTimer);
+    bubbleIsPaused = true;
+  } else {
+    bubbleIsPaused = false;
+    startTimer();
+  }
 }
 
 function setup() {
