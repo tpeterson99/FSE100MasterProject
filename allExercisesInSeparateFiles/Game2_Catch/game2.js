@@ -18,7 +18,7 @@ let sharkX = 0;
 let sharkY = 0;
 let imageY;
 let win = false;
-
+let canDraw = true;
 
 function game2Preload(){
   waves = loadImage("Game2/waves.jpeg");
@@ -43,10 +43,17 @@ function game2Setup(){
   game2Button.hide();
   game3Button.show();
   game4Button.hide();
+  // playAgainButton = createButton('Play Again');
+  // playAgainButton.position(10,0);
+  // playAgainButton.mousPressed(reloadPage2);
+  // playAgainButton.show();
 
   // Set the size of the waves image
   waves.resize(windowWidth, 0);
   frameRate(20);
+
+  // reset values to start so game resets
+  reloadPage2();
 
   if(!lineDrawn){
     drawBall(y);
@@ -55,7 +62,7 @@ function game2Setup(){
 
 function game2Draw(){
   // draw line if mouse is pressed
-  if (mouseIsPressed) {
+  if (mouseIsPressed && canDraw) {
     ++mouseCount;
 
     // get starting line coordinate
@@ -110,6 +117,7 @@ function game2Draw(){
      // Display text on the screen
       text("You win!", width/2, height/2);
       image(waves, 0, imageY);
+      // g2PlayAgainButton.show();
     }
   }
   else if(!landedOnLine && sharkEats){
@@ -239,6 +247,7 @@ function dropBall(){
   ellipse(width / 2, y, r * 2 + 10, r * 2 + 10);
   ++y;
   drawBall(y); // draw dropping ball
+  canDraw = false;
 }
 
 // draws red line on screen
@@ -270,4 +279,31 @@ function sharkEatBallRight(){
     rolls = false;
     landedOnLine = false;
   }
+}
+
+function reloadPage2() {
+  mouseCount = 0; // Variable tracking mouse presses
+  lineDrawn = false; // Variable to track if the line is drawn
+  landedOnLine = false; // true if ball collides with either end of line y coordinate
+  y = 20; // for ball y coordinate
+  r = 75; // ball radius
+  x; // x coordinate of ball
+  lineY; // saves last y coordinate of line drawn
+  xVelocity = 2.5; // for rolling ball
+  startX; // saves start x coordinate of line drawn
+  startY; // saves start y coordinate of line drawn
+  lAngle; // angle of line
+  rolls = false; // true if |lAngle| > 5, signals for ball to start rolling
+  sharkEats = false; // true if ball x coordinate == 1/4 or 3/4 of console width
+  drawShark = false;
+  sharkX = 0;
+  sharkY = 0;
+  imageY;
+  win = false;
+  canDraw = true;
+
+//   background('#ffffff');
+
+//   imageY = windowHeight - waves.height; 
+//   image(waves, 0, imageY);
 }
