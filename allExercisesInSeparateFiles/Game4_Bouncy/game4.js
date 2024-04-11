@@ -44,8 +44,7 @@ function game4MousePressed(){
   // Check if the mouse is pressed within the boundaries of the disc
   if (mouseX > disc.x && mouseX < disc.x + disc.w &&
       mouseY > disc.y && mouseY < disc.y + disc.h) {
-    // Handle mouse interaction for the disc
-    // For example, you can change the color or behavior of the disc
+  
     disc.color = color(255, 0, 0); // Change disc color to red
   }
 }
@@ -67,7 +66,7 @@ class Disc {
     }
 
     stroke(255);
-    fill(this.color); // Use disc color
+    fill(this.color); 
     rect(this.x, this.y, this.w, this.h);
   }
 
