@@ -58,13 +58,13 @@ function setup() {
   menuButton.mousePressed(switchToMM);
   menuButton.hide();
   
-  game1Button = createButton('Hungry Shark');
+  game1Button = createButton('Apple Draw');
   game1Button.size(100, 40);
   game1Button.position(windowWidth/2 - 400, windowHeight/2);
   game1Button.mousePressed(game1Setup);
   game1Button.show();
   
-  game2Button = createButton('Apple Draw');
+  game2Button = createButton('Hungry Shark');
   game2Button.size(100, 40);
   game2Button.position(windowWidth/2 - 200, windowHeight/2);
   game2Button.mousePressed(game2Setup);
