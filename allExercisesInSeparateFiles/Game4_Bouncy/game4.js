@@ -1,4 +1,4 @@
-et disc, discWidth, discHeight, discX, discY;
+let disc, discWidth, discHeight, discX, discY;
 let backgroundPhoto;
 let ballX, ballY, ballSpeedY, score, gameOver;
 
@@ -17,9 +17,9 @@ function game4Setup(){
   image(backgroundPhoto, 0, 0);
 
   menuButton.show();
-  game1Button.show();
-  game2Button.show();
-  game3Button.show();
+  game1Button.hide();
+  game2Button.hide();
+  game3Button.hide();
   game4Button.hide();
 }
 
@@ -49,7 +49,6 @@ function game4Draw(){
   score = 0; // Initialize score
   gameOver = false; // Set game over flag to false
 
-}
 }
 function game4Draw(){
   image(backgroundPhoto, 0, 0); 
