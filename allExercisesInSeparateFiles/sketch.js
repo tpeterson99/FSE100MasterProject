@@ -35,6 +35,8 @@ function switchToMM(){
     bubbleInstances.splice(i, 1);
     bubbleCount = 0;
   }
+  timerDisplay.hide();
+  clearInterval(bubbleTimer);
 }
 
 function pauseSetup() {
@@ -114,7 +116,7 @@ function mainMenu(){
   noStroke();
   fill('black');
   textSize(50);
-  text('Toddler\'s Playland', windowWidth/2 - 200, 100);
+  text('Toddler\'s Playland', windowWidth/2 - 225, 100);
 
   textSize(20);
   text('Highscore: ' + bubbleHighScore, windowWidth/2, windowHeight/2 + 75);
