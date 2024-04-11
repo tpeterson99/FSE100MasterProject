@@ -17,6 +17,7 @@ let drawShark = false;
 let sharkX = 0;
 let sharkY = 0;
 let imageY;
+let win = false;
 
 
 function game2Preload(){
@@ -84,6 +85,8 @@ function game2Draw(){
 
     lineAngle(startX, startY, lineX, lineY);
     console.log(lAngle);
+
+
     // if the line isn't straight roll the ball
     if(rolls){
       ballRolls();
@@ -97,6 +100,16 @@ function game2Draw(){
         console.log(sharkEats);
         console.log("rolls:", rolls);
       }
+    } // display win message if the ball is on straight line
+    else if(landedOnLine && win){  
+      textSize(width*0.1);
+      textAlign(CENTER, CENTER);
+      stroke('green');
+      fill('green');
+  
+     // Display text on the screen
+      text("You win!", width/2, height/2);
+      image(waves, 0, imageY);
     }
   }
   else if(!landedOnLine && sharkEats){
@@ -106,7 +119,15 @@ function game2Draw(){
       
       // move shark image to ball coordinates
       moveShark();
-      image(shark, sharkX - shark.width / 2, sharkY - shark.height / 2);
+
+      textSize(width*0.1);
+      textAlign(CENTER, CENTER);
+      stroke('red');
+      fill('red');
+  
+     // Display text on the screen
+      text("You lose!", width/2, height/2);
+      image(waves, 0, imageY);
   }
 }
 
@@ -116,6 +137,7 @@ function moveShark(){
   sharkX = x;
   sharkY = y;
   drawShark = false;
+
 
   //this will slowly move shark but leaves a trail
   // let difX = Math.abs(sharkX - x);
@@ -143,6 +165,8 @@ function moveShark(){
   stroke('#ffffff'); 
   ellipse(x, y, r*2, r*2);
 
+  image(shark, sharkX - shark.width / 2, sharkY - shark.height / 2);
+
   // cover shark with waves
   image(waves, 0, imageY);
 
@@ -152,6 +176,9 @@ function lineAngle(sX, sY, eX, eY){
   lAngle = Math.atan2(eY - sY, eX - sX) * 180 / Math.PI;
   if(Math.abs(lAngle) > 5){
     rolls = true;
+  }
+  else{
+    win = true;
   }
 }
 // Function to check if the ball has landed on the line
