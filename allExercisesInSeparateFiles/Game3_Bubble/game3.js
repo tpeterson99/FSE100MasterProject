@@ -1,4 +1,4 @@
-let bubbleMin = 1000;
+let bubbleMin = 30;
 let bubbleCount = 0;
 let popCount = 0;
 let bubbleInstances = [];
@@ -42,6 +42,7 @@ function game3Setup(){
   bubbleScore.position(250, 20);
   bubbleScore.style('font-size', '32px');
 
+  bubbleTimeLeft = 60;
   timerDisplay = createP("Time left: " + bubbleTimeLeft + "s");
   timerDisplay.position(windowWidth - 300, 20);
   timerDisplay.style('font-size', '32px');
@@ -51,7 +52,7 @@ function game3Setup(){
 
 function game3Draw(){
   if(!bubbleIsPaused && bubbleTimeLeft > 0) {
-    let addBubble = random(10, 20);
+    let addBubble = random(1, 3);
  
     if (bubbleCount < bubbleMin) {
       bubbleCreation(addBubble);
@@ -72,8 +73,8 @@ function game3MouseClicked(){
         redrawBubbles();
         bubbleCount--;
         popCount++;
-        bubbleScore.html("High Score: " + bubbleHighScore + " Current Score: " + popCount);
         updateHighscore(popCount);
+        bubbleScore.html("High Score: " + bubbleHighScore + " Current Score: " + popCount);    
         break;
     }
   }
