@@ -28,9 +28,9 @@ function game1Setup(){
   treeImage.resize(windowWidth, windowHeight);
   menuButton.show();
   game1Button.hide();
-  game2Button.hide();
-  game3Button.hide();
-  game4Button.hide();
+  //game2Button.hide();
+  //game3Button.hide();
+  //game4Button.hide();
 
   fill('black');
   text('Activity 1 goes here', 200, 200);
@@ -55,7 +55,7 @@ let prevX, prevY; // Variables to store previous mouse position
 
 function game1Draw() {
   if (canDraw) {
-    // Display text while canDraw is true
+    // Display instructions while the apple is still white
     stroke("black")
     fill("black");
     strokeWeight(1);
@@ -72,9 +72,9 @@ function game1Draw() {
         // Calculate the distance traveled by the mouse
         let d = dist(mouseX, mouseY, prevX, prevY);
         // Add the area of the strip to the filled area
-        filledArea += d * 10; // Multiplying by 10 to approximate area based on stroke weight
+        filledArea += d * 6.4; // Multiplying by around 10 to approximate area based on stroke weight
 
-        strokeWeight(10); // Set the thickness of the line
+        strokeWeight(7); // Set the thickness of the line
         stroke(255, 0, 0); // Set color to red
         line(mouseX, mouseY, prevX, prevY); // Draw line
       }
@@ -110,7 +110,7 @@ function game1Draw() {
   }
 
   if (!canDraw) {
-    // Circle animation
+    // apple drop
     if (circlePosy + circleRadius < windowHeight) {
       circlePosy += fallSpeed; // Move circle down
       stemPosy += fallSpeed;
@@ -127,16 +127,17 @@ function game1Draw() {
     stroke("brown");
     rect(stemPosx, stemPosy, stemWidth, stemHeight);
     stroke("green");
-    strokeWeight(5)
+    strokeWeight(5);
     fill("green");
     ellipse(leafPosx, leafPosy, leafWidth, leafHeight);
   }
   if (canDraw) {
-    // Display text while canDraw is true
+    // Display instructions while the apple is still white
     stroke("black")
     fill("black");
     strokeWeight(1);
     textSize(25);
     text("Color in the apple!", (width/9), height-(height/18));
   }
+  
 }
