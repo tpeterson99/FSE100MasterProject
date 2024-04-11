@@ -19,6 +19,7 @@ let sharkY = 0;
 let imageY;
 let win = false;
 let canDraw = true;
+let wHeight; // stores original height of waves
 
 function game2Preload(){
   waves = loadImage("Game2/waves.jpeg");
@@ -30,10 +31,10 @@ function game2Setup(){
   currentActivity = 2;
   
   background('#ffffff');
+  wHeight = waves.height;
 
-  imageY = windowHeight - waves.height; 
+  imageY = windowHeight - wHeight; 
   image(waves, 0, imageY);
-  // image(shark, 0, imageY);
 
   // Hide the Activity 2,4,1 buttons, show all the other buttons
   fill(0);
@@ -49,7 +50,7 @@ function game2Setup(){
   // playAgainButton.show();
 
   // Set the size of the waves image
-  waves.resize(windowWidth, 0);
+  //waves.resize(windowWidth, 0);
   frameRate(20);
 
   // reset values to start so game resets
@@ -182,7 +183,7 @@ function moveShark(){
 // function to get angle of line
 function lineAngle(sX, sY, eX, eY){
   lAngle = Math.atan2(eY - sY, eX - sX) * 180 / Math.PI;
-  if(Math.abs(lAngle) > 5){
+  if(Math.abs(lAngle) > 2){
     rolls = true;
   }
   else{
@@ -298,9 +299,10 @@ function reloadPage2() {
   drawShark = false;
   sharkX = 0;
   sharkY = 0;
-  imageY;
+  // imageY;
   win = false;
   canDraw = true;
+  wHeight = wHeight;
 
 //   background('#ffffff');
 
