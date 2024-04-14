@@ -17,8 +17,8 @@ function setup() {
 
   ballX = random(windowWidth);
   ballY = 0;
-  ballSpeedX = 5;
-  ballSpeedY = 5;
+  ballSpeedX = 15;
+  ballSpeedY = 15;
 
   score = 0;
   gameOver = false;
