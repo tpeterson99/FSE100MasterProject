@@ -35,7 +35,7 @@ function draw() {
   background(bgImage);
 
   // Draw ball
-  fill(255);
+  fill(65);
   ellipse(ballX, ballY, 50, 50);
 
   // Move ball
