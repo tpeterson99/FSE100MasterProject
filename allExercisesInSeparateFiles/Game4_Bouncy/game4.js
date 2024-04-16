@@ -27,7 +27,7 @@ function setup() {
   let x = random(windowWidth);
   let y = random(windowHeight);
   let w = 100;
-  let h = 50;
+  let h = 20;
   disc = new Disc(x, y, w, h);
 }
 
