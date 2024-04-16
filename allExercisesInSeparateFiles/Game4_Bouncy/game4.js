@@ -26,8 +26,8 @@ function setup() {
   // Initialize disc
   let x = random(windowWidth);
   let y = random(windowHeight);
-  let w = random(10, 40);
-  let h = random(10, 40);
+  let w = 100;
+  let h = 50;
   disc = new Disc(x, y, w, h);
 }
 
