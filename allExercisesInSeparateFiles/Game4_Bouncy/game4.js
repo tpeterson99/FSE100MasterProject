@@ -9,16 +9,16 @@ function preload() {
 function setup() {
   createCanvas(windowWidth, windowHeight);
 
-  // Initialize variables
+
   discWidth = 100;
   discHeight = 20;
   discX = windowWidth / 2 - discWidth / 2;
-  discY = windowHeight - discHeight - 10; // Place disc at the bottom with a margin
+  discY = windowHeight - discHeight - 10;
 
   ballX = random(windowWidth);
   ballY = 0;
-  ballSpeedX = 15;
-  ballSpeedY = 15;
+  ballSpeedX = 5;
+  ballSpeedY = 5;
 
   score = 0;
   gameOver = false;
@@ -38,27 +38,35 @@ function draw() {
   fill(65);
   ellipse(ballX, ballY, 50, 50);
 
-  // Move ball
+
   if (!gameOver) {
     ballY += ballSpeedY;
     ballX += ballSpeedX;
 
-    // Check for collision with top and bottom edges
+
     if (ballY <= 0 || ballY >= windowHeight) {
       ballSpeedY *= -1; // Reverse Y direction
     }
 
-    // Check for collision with left and right edges
+
     if (ballX <= 0 || ballX >= windowWidth) {
-      ballSpeedX *= -1; // Reverse X direction
+      ballSpeedX *= -1;
     }
 
-    // Check for collision with disc
+
     if (ballY + 10 >= discY && ballX >= discX && ballX <= discX + discWidth) {
       ballSpeedY *= -1; // Reverse Y direction
     }
-  }
 
+    if (ballY > (windowHeight - 50)) {
+      gameOver = true;
+    }
+  } else {
+    fill(255, 0, 0);
+    textSize(32);
+    textAlign(CENTER);
+    text("Game Over", windowWidth / 2, windowHeight / 2);
+  }
   // Draw disc
   disc.show();
 }
@@ -83,9 +91,11 @@ class Disc {
     if (this.dragging) {
       this.x = mouseX + this.offsetX;
       this.y = mouseY + this.offsetY;
+      discX = this.x;
+      discY = this.y;
     }
 
-    stroke(255);
+    stroke(225);
     fill(this.color);
     rect(this.x, this.y, this.w, this.h);
   }
