@@ -9,7 +9,14 @@ function preload() {
 function setup() {
   createCanvas(windowWidth, windowHeight);
 
-
+   // Hide the Activity 3 button, show home and pause button
+  menuButton.show();
+  game1Button.show();
+  game2Button.show();
+  game3Button.show();
+  game4Button.hide();
+  
+  
   discWidth = 100;
   discHeight = 20;
   discX = windowWidth / 2 - discWidth / 2;
