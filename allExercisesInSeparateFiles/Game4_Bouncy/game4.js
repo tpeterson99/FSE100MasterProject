@@ -9,18 +9,11 @@ function preload() {
 function setup() {
   createCanvas(windowWidth, windowHeight);
 
-   // Hide the Activity 3 button, show home and pause button
-  menuButton.show();
-  game1Button.show();
-  game2Button.show();
-  game3Button.show();
-  game4Button.hide();
-  
-  
+
   discWidth = 100;
   discHeight = 20;
   discX = windowWidth / 2 - discWidth / 2;
-  discY = windowHeight - discHeight - 10;
+  discY = windowHeight - discHeight - 10; 
 
   ballX = random(windowWidth);
   ballY = 0;
@@ -63,6 +56,7 @@ function draw() {
 
     if (ballY + 10 >= discY && ballX >= discX && ballX <= discX + discWidth) {
       ballSpeedY *= -1; // Reverse Y direction
+      score++; // Increment the score
     }
 
     if (ballY > (windowHeight - 50)) {
@@ -70,12 +64,20 @@ function draw() {
     }
   } else {
     fill(255, 0, 0);
-    textSize(32);
+    textSize(50);
     textAlign(CENTER);
-    text("Game Over", windowWidth / 2, windowHeight / 2);
+    text("Game Over!", windowWidth / 2, windowHeight / 2);
   }
+
+
   // Draw disc
   disc.show();
+
+  // Display the score on the screen
+  fill(255,0,0,);
+  textSize(30);
+  textAlign(CENTER);
+  text("Score: " + score, windowWidth / 2, 50);
 }
 
 function mousePressed() {
