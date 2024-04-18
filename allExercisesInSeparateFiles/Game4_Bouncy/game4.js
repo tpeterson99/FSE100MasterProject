@@ -7,7 +7,7 @@ function game4Preload() {
 }
 
 function game4Setup() {
-  
+  currentactivity = 4
 
   menuButton.show();
   game1Button.hide();
