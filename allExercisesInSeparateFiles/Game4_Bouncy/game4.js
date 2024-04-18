@@ -2,11 +2,11 @@ let disc, discWidth, discHeight, discX, discY;
 let bgImage;
 let ballX, ballY, ballSpeedX, ballSpeedY, score, gameOver;
 
-function Game4Preload() {
+function game4Preload() {
   bgImage = loadImage("background.png");
 }
 
-function Game4Setup() {
+function game4Setup() {
   createCanvas(windowWidth, windowHeight);
 
   menuButton.show();
@@ -37,7 +37,7 @@ function Game4Setup() {
   disc = new Disc(x, y, w, h);
 }
 
-function Game4Draw() {
+function game4Draw() {
   background(bgImage);
 
   // Draw ball
@@ -86,7 +86,7 @@ function Game4Draw() {
   text("Score: " + score, windowWidth / 2, 50);
 }
 
-function Game4MousePressed() {
+function game4MousePressed() {
   disc.pressed(mouseX, mouseY);
 }
 
