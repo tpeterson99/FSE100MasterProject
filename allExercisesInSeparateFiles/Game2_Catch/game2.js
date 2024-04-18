@@ -3,9 +3,9 @@ let shark; // shark image declaration
 let mouseCount = 0; // Variable tracking mouse presses
 let lineDrawn = false; // Variable to track if the line is drawn
 let landedOnLine = false; // true if ball collides with either end of line y coordinate
-let y = 20; // for ball y coordinate
-let r = 75; // ball radius
-let x; // x coordinate of ball
+let bally2y = 20; // for ball y coordinate
+let ball2r = 75; // ball radius
+let ball2x; // x coordinate of ball
 let lineY; // saves last y coordinate of line drawn
 let xVelocity = 2.5; // for rolling ball
 let startX; // saves start x coordinate of line drawn
@@ -18,7 +18,7 @@ let sharkX = 0;
 let sharkY = 0;
 let imageY;
 let win = false;
-let canDraw = true;
+let canDraw2 = true;
 let wHeight; // stores original height of waves
 
 function game2Preload(){
@@ -42,7 +42,7 @@ function game2Setup(){
   menuButton.show();
   game1Button.hide();
   game2Button.hide();
-  game3Button.show();
+  game3Button.hide();
   game4Button.hide();
   // playAgainButton = createButton('Play Again');
   // playAgainButton.position(10,0);
@@ -57,13 +57,13 @@ function game2Setup(){
   reloadPage2();
 
   if(!lineDrawn){
-    drawBall(y);
+    drawBall(ball2y);
   }
 }
 
 function game2Draw(){
   // draw line if mouse is pressed
-  if (mouseIsPressed && canDraw) {
+  if (mouseIsPressed && canDraw2) {
     ++mouseCount;
 
     // get starting line coordinate
@@ -79,8 +79,8 @@ function game2Draw(){
   } // if the line is drawn drop the ball
   else if(lineDrawn){
     line(startX, startY, lineX, lineY);
-    dropBall(y);
-    checkBallOnLine(startY,y,r);
+    dropBall(ball2y);
+    checkBallOnLine(startY,ball2y,ball2r);
 
     if(drawShark){
       sharkY = windowHeight - shark.height;
@@ -122,9 +122,9 @@ function game2Draw(){
     }
   }
   else if(!landedOnLine && sharkEats){
-      ellipse(x, y, r*2, r*2);
+      ellipse(ball2x, ball2y, ball2r*2, ball2r*2);
       console.log("ball stop, shark eat");
-      console.log("x and y coords,", x, " ", y);
+      console.log("x and y coords,", ball2x, " ", ball2y);
       
       // move shark image to ball coordinates
       moveShark();
@@ -143,8 +143,8 @@ function game2Draw(){
 //function to move shark coordinates to ball coordinates
 function moveShark(){
 
-  sharkX = x;
-  sharkY = y;
+  sharkX = ball2x;
+  sharkY = ball2y;
   drawShark = false;
 
 
@@ -172,7 +172,7 @@ function moveShark(){
   fill('#ffffff');
   strokeWeight(10);
   stroke('#ffffff'); 
-  ellipse(x, y, r*2, r*2);
+  ellipse(ball2x, ball2y, ball2r*2, ball2r*2);
 
   image(shark, sharkX - shark.width / 2, sharkY - shark.height / 2);
 
@@ -192,13 +192,55 @@ function lineAngle(sX, sY, eX, eY){
 }
 // Function to check if the ball has landed on the line
 // Checks the last known y value
-function checkBallOnLine(x, y, r){
+function checkBallOnLine(x, ball2y, r){
   // Calculate the distance between the ball's center and the line
-  let distance = abs(y - lineY);
-  let distance2 = abs(y - startY)
-    
+  let distance = abs(ball2y - lineY);
+  let distance2 = abs(ball2y - startY);
+  
+  // check if line is outside of ball's range
+  if(lineX < width/2+20){
+    if(startX < width/2+20){
+      console.log("ball timsey is", ball2x)
+      if(distance <= ball2r || distance2 <= ball2r){
+        lineDrawn = false;
+        moveShark();
+
+        textSize(width*0.1);
+        textAlign(CENTER, CENTER);
+        stroke('red');
+        fill('red');
+  
+     // Display text on the screen
+        text("You lose!", width/2, height/2);
+        image(waves, 0, imageY);
+      }
+      return;
+    }
+  }
+  else if(lineX > width/2+20){
+    if(startX > width/2+20){
+      console.log("ball timsey is", ball2x)
+      console.log("start x is", startX)
+      console.log("line x is", lineX)
+      if(distance <= ball2r || distance2 <= ball2r){
+        lineDrawn = false;
+        moveShark();
+
+        textSize(width*0.1);
+        textAlign(CENTER, CENTER);
+        stroke('red');
+        fill('red');
+  
+     // Display text on the screen
+        text("You lose!", width/2, height/2);
+        image(waves, 0, imageY);
+      }
+      return;
+    }
+  }
+
  // Check if the distance is less than or equal to the ball's radius
-  if(distance <= r || distance2 <= r){
+  if(distance <= ball2r || distance2 <= r){
     lineDrawn = false; // to stop ball being drawn
     landedOnLine = true;
   }
@@ -209,35 +251,35 @@ function ballRolls(){
   fill('#ffffff'); // clear path where ball has already been
   strokeWeight(10);
   stroke('#ffffff'); 
-  ellipse(x, y, r * 2 + 10, r * 2 + 10);
+  ellipse(ball2x, ball2y, ball2r * 2 + 10, ball2r * 2 + 10);
   nAngle = lAngle;
 
   // if the angle is negative subtract the values
   if(nAngle < 0){ 
     nAngle += 360;
-    x -= xVelocity * cos(nAngle * Math.PI / 180);
-    y -= xVelocity * sin(nAngle * Math.PI / 180);
+    ball2x -= xVelocity * cos(nAngle * Math.PI / 180);
+    ball2y -= xVelocity * sin(nAngle * Math.PI / 180);
   }
   else{
-    x += xVelocity * cos(nAngle * Math.PI / 180);
-    y += xVelocity * sin(nAngle * Math.PI / 180);
+    ball2x += xVelocity * cos(nAngle * Math.PI / 180);
+    ball2y += xVelocity * sin(nAngle * Math.PI / 180);
   }
 
   // draw ball
   strokeWeight(10);
   stroke('green'); // Set stroke color to green
   fill('green'); // Set fill color to green
-  ellipse(x, y, r*2, r*2);
+  ellipse(ball2x, ball2y, ball2r*2, ball2r*2);
 }
 
 
 function drawBall(y){
     // draw ball  
-    x = width / 2; // for ball
+    ball2x = width / 2; // for ball
     strokeWeight(10);
     stroke('green'); // Set stroke color to green
     fill('green'); // Set fill color to green
-    ellipse(x, y, r*2, r*2);
+    ellipse(ball2x, ball2y, ball2r*2, ball2r*2);
 }
 
 // drops ball
@@ -245,10 +287,10 @@ function dropBall(){
   fill('#ffffff'); // clear path where ball has already been
   strokeWeight(10);
   stroke('#ffffff'); // Set stroke color to green
-  ellipse(width / 2, y, r * 2 + 10, r * 2 + 10);
-  ++y;
-  drawBall(y); // draw dropping ball
-  canDraw = false;
+  ellipse(width / 2, ball2y, ball2r * 2 + 10, ball2r * 2 + 10);
+  ++ball2y;
+  drawBall(ball2y); // draw dropping ball
+  canDraw2 = false;
 }
 
 // draws red line on screen
@@ -266,7 +308,7 @@ function drawLine(){
 
 // returns true if ball is at end of line or 1/4 of width of screen
 function sharkEatBallLeft(){
-  if(x <= startX - 100 || x <= width / 4){
+  if(ball2x <= startX - 100 || ball2x <= width / 4){
     sharkEats = true;
     rolls = false;
     landedOnLine = false;
@@ -275,7 +317,7 @@ function sharkEatBallLeft(){
 
 // returns true if ball is at end of line or 3/4 of width of screen
 function sharkEatBallRight(){
-  if(x >= lineX + 100 || x >= width * 0.75){
+  if(ball2x >= lineX + 100 || ball2x >= width * 0.75){
     sharkEats = true;
     rolls = false;
     landedOnLine = false;
@@ -286,9 +328,9 @@ function reloadPage2() {
   mouseCount = 0; // Variable tracking mouse presses
   lineDrawn = false; // Variable to track if the line is drawn
   landedOnLine = false; // true if ball collides with either end of line y coordinate
-  y = 20; // for ball y coordinate
-  r = 75; // ball radius
-  x; // x coordinate of ball
+  ball2y = 20; // for ball y coordinate
+  ball2r = 75; // ball radius
+  ball2x; // x coordinate of ball
   lineY; // saves last y coordinate of line drawn
   xVelocity = 2.5; // for rolling ball
   startX; // saves start x coordinate of line drawn
@@ -301,7 +343,7 @@ function reloadPage2() {
   sharkY = 0;
   // imageY;
   win = false;
-  canDraw = true;
+  canDraw2 = true;
   wHeight = wHeight;
 
 //   background('#ffffff');
