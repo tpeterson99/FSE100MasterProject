@@ -2,13 +2,19 @@ let disc, discWidth, discHeight, discX, discY;
 let bgImage;
 let ballX, ballY, ballSpeedX, ballSpeedY, score, gameOver;
 
-function Game4preload() {
+function Game4Preload() {
   bgImage = loadImage("background.png");
 }
 
-function Game4setup() {
+function Game4Setup() {
   createCanvas(windowWidth, windowHeight);
-menu
+
+  menuButton.show();
+  game1Button.hide();
+  game2Button.hide();
+  game3Button.hide();
+  game4Button.hide();
+  
 
   discWidth = 100;
   discHeight = 20;
@@ -31,7 +37,7 @@ menu
   disc = new Disc(x, y, w, h);
 }
 
-function Game4draw() {
+function Game4Draw() {
   background(bgImage);
 
   // Draw ball
