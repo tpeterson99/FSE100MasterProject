@@ -3,7 +3,7 @@ let bgImage;
 let ballX, ballY, ballSpeedX, ballSpeedY, score, gameOver;
 
 function game4Preload() {
-  bgImage = loadImage("background.png");
+  bgImage = loadImage("./Game4_Bouncy/background.png");
 }
 
 function game4Setup() {
