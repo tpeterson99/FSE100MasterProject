@@ -22,8 +22,8 @@ let canDraw2 = true;
 let wHeight; // stores original height of waves
 
 function game2Preload(){
-  waves = loadImage("Game2/waves.jpeg");
-  shark = loadImage("Game2/shark_game_shark.png")
+  waves = loadImage("./Game2_Catch/waves.jpeg");
+  shark = loadImage("./Game2_Catch/shark_game_shark.png")
 }
 
 function game2Setup(){
