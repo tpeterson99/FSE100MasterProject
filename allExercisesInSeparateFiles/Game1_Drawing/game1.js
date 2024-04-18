@@ -16,7 +16,7 @@ let canDraw = true;
 let fallSpeed = 5;
 
 function game1Preload(){
-  treeImage = loadImage("./Game1/apple-tree-1.jpg");
+  treeImage = loadImage("./Game1_Drawing/apple-tree-1.jpg");
 }
 
 function game1Setup(){
