@@ -7,7 +7,7 @@ function game4Preload() {
 }
 
 function game4Setup() {
-  createCanvas(windowWidth, windowHeight);
+  
 
   menuButton.show();
   game1Button.hide();
