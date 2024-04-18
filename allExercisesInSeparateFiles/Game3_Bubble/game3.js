@@ -3,7 +3,6 @@ let bubbleCount = 0;
 let popCount = 0;
 let bubbleInstances = [];
 let bubbleObj;
-let bubbleScore;
 let bubbleTimer;
 let bubbleTimeLeft = 60;
 let bubbleIsPaused = false;
@@ -30,7 +29,6 @@ function game3Setup(){
   
   stroke(0);
   
-  // Hide the Activity 3 button, show home and pause button
   menuButton.show();
   game1Button.hide();
   game2Button.hide();
@@ -51,6 +49,8 @@ function game3Setup(){
 }
 
 function game3Draw(){
+  frameRate(30);
+  background(75, 54, 209);
   if(!bubbleIsPaused && bubbleTimeLeft > 0) {
     let addBubble = random(1, 3);
  
@@ -60,8 +60,13 @@ function game3Draw(){
     }
 
     if (mouseIsPressed) {
-      game3MouseClicked();
-    }
+      mouseClicked = true;
+    } else if (mouseClicked) {
+        mouseClicked = false;
+        game3MouseClicked();
+      }
+
+    bubbleMovement();
   } 
 }
 
@@ -75,8 +80,28 @@ function game3MouseClicked(){
         popCount++;
         updateHighscore(popCount);
         bubbleScore.html("High Score: " + bubbleHighScore + " Current Score: " + popCount);    
-        break;
     }
+  }
+}
+
+function bubbleMovement() {
+  for (let i = 0; i < bubbleInstances.length; i++) {
+    let instance = bubbleInstances[i];
+    instance.x = instance.x + random(-3, 3);
+    instance.y = instance.y + random(-3, 3);
+    if (instance.x <= 0) {
+      instance.x = instance.x + 3;
+    }
+    if (instance.y <= 0) {
+      instance.y = instance.y + 3;
+    }
+    if (instance.x >= windowWidth) {
+      instance.x = instance.x - 3;
+    }
+    if (instance.y >= windowHeight) {
+      instance.y = instance.y - 3;
+    }
+    image(instance.image, instance.x, instance.y);
   }
 }
 
