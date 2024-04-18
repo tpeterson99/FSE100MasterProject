@@ -111,7 +111,7 @@ class Disc {
     }
 
     stroke(65);
-    fill(this.color);
+    fill(65);
     rect(this.x, this.y, this.w, this.h);
   }
 
