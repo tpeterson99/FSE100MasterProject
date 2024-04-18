@@ -86,7 +86,7 @@ function Game4Draw() {
   text("Score: " + score, windowWidth / 2, 50);
 }
 
-function mousePressed() {
+function Game4MousePressed() {
   disc.pressed(mouseX, mouseY);
 }
 
