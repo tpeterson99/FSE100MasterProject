@@ -18,7 +18,7 @@ function preload(){
 }
 
 function switchToMM(){
-  background(220);
+  background('#05E4D8');
   currentActivity = 0;
   
   // Hide the home page button, show the activity buttons
@@ -51,7 +51,7 @@ function pauseSetup() {
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  background('blue');
+  background('#05E4D8');
   menuButton = createButton('Home Page');
   menuButton.size(100, 40);
   menuButton.position(50, 50);
@@ -59,26 +59,34 @@ function setup() {
   menuButton.hide();
   
   game1Button = createButton('Apple Draw');
-  game1Button.size(100, 40);
-  game1Button.position(windowWidth/2 - 400, windowHeight/2);
+  game1Button.style('background-color', '#98FF77');
+  game1Button.style('font-size', '24px');
+  game1Button.size(200, 80);
+  game1Button.position(windowWidth/2 - 225, windowHeight/2 - 100);
   game1Button.mousePressed(game1Setup);
   game1Button.show();
   
   game2Button = createButton('Hungry Shark');
-  game2Button.size(100, 40);
-  game2Button.position(windowWidth/2 - 200, windowHeight/2);
+  game2Button.style('background-color', '#98FF77');
+  game2Button.style('font-size', '24px');
+  game2Button.size(200, 80);
+  game2Button.position(windowWidth/2 - 225, windowHeight/2);
   game2Button.mousePressed(game2Setup);
   game2Button.show();
   
   game3Button = createButton('Bubble Pop');
-  game3Button.size(100, 40);
-  game3Button.position(windowWidth/2, windowHeight/2);
+  game3Button.style('background-color', '#98FF77');
+  game3Button.style('font-size', '24px');
+  game3Button.size(200, 80);
+  game3Button.position(windowWidth/2 + 75, windowHeight/2);
   game3Button.mousePressed(game3Setup);
   game3Button.show();
   
   game4Button = createButton('Bouncy Ball');
-  game4Button.size(100, 40);
-  game4Button.position(windowWidth/2 + 200, windowHeight/2);
+  game4Button.style('background-color', '#98FF77');
+  game4Button.style('font-size', '24px');
+  game4Button.size(200, 80);
+  game4Button.position(windowWidth/2 + 75, windowHeight/2 - 100);
   game4Button.mousePressed(game4Setup);
   game4Button.show();
 
@@ -111,15 +119,20 @@ function draw() {
 }
 
 function mainMenu(){
-  background('blue');
-  
-  noStroke();
-  fill('black');
-  textSize(50);
-  text('Toddler\'s Playland', windowWidth/2 - 225, 100);
+  background('#05E4D8');
 
+  textAlign(LEFT, CENTER); // Left align text
+  strokeWeight(1);
+  fill('#580573');
+  noStroke();
   textSize(20);
-  text('Highscore: ' + bubbleHighScore, windowWidth/2, windowHeight/2 + 75);
+  text('Highscore: ' + bubbleHighScore, windowWidth/2 + 75, windowHeight/2 + 100);
+
+  strokeWeight(1);
+  fill('#580573');
+  textSize(50);
+  textAlign(CENTER, CENTER);
+  text('Toddler\'s Playland', windowWidth/2 + 10, windowHeight/4);
 }
 
 /*****
@@ -138,4 +151,3 @@ function mousePressed(){
       break;
   }
 }
-
