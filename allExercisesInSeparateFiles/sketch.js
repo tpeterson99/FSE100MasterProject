@@ -84,7 +84,7 @@ function setup() {
 
   pauseButton = createButton('Pause');
   pauseButton.size(100, 40);
-  pauseButton.position(1200, 875);
+  pauseButton.position(windowWidth/2, 50);
   pauseButton.mousePressed(pauseSetup);
   pauseButton.hide();
 }
